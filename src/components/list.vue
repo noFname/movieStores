@@ -2,6 +2,7 @@
 <div>
 	<h1>list</h1>
 	<navbar></navbar>	
+	
 </div>
 </template>
 
