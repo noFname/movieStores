@@ -8,7 +8,7 @@
 		<router-link tag="li" to="/list">
 			购票
 		</router-link>
-		<router-link tag="li" to="/login" class="right iconfont icon-yonghu">
+		<router-link tag="li" to="/login" class="right iconfont icon-02">
 		</router-link>
 	</ul>
 </div>
