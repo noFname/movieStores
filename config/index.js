@@ -11,14 +11,18 @@ module.exports = {
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {
-        '/Service' : {
-            target : 'https://m.mtime.cn',
-            port:'m.mtime.cn',
-            changeOrigin : true
-        },
+        //https://m.mtime.cn/Service/callback.mi/Showtime/ShowtimeMovieAndDateListByCinema.api?cinemaId=8382&t=2018811743759
+        '/Service': {
+              target: 'https://m.mtime.cn',
+              host: 'm.mtime.cn',
+              changeOrigin:true,
+              // pathRewrite: {
+              //     '^/v4/api': '/v4/api'
+              //   }
+          },
         '/api' : {
             target : 'https://ticket-m.mtime.cn',
-            port:'ticket-m.mtime.cn',
+            host:'ticket-m.mtime.cn',
             changeOrigin : true
         }
     },
