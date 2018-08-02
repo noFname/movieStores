@@ -26,7 +26,7 @@ export default new Router({
       component: list
     },
     {
-      path: '/detail',
+      path: '/detail/:cinemaid',
       component: detail
     },
     {
@@ -56,7 +56,7 @@ export default new Router({
       component: search
     },
     {
-      path: '/detailMovie',
+      path: '/detailMovie/:id',
       component: detailMovie
     },
     {
