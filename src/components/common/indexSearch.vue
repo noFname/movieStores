@@ -4,7 +4,7 @@
 		<ul>
 			<li class="left">北京</li>
 			<li class="right">
-				<div>
+				<div class="iconfont icon-web">
 					影片/影院/影人
 				</div>
 			</li>
