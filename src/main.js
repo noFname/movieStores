@@ -8,6 +8,14 @@ import router from './router'
 
 Vue.config.productionTip = false
 Vue.use(MintUI)
+// vue.directive('swipe',{
+// 	inserted(el){
+// 		new Swiper('.swiper-container',{
+// 			autoplay:2000,
+// 			loop:true
+// 		})
+// 	}
+// })
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
