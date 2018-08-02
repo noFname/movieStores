@@ -4,7 +4,7 @@
 		<ul>
 			<li class="left">北京</li>
 			<li class="right">
-				<div class="iconfont icon-web">
+				<div class="iconfont icon-web-icon-">
 					影片/影院/影人
 				</div>
 			</li>
@@ -42,7 +42,7 @@ export default {
 			div{
 				width: 100%;
 				height:40px;
-				padding: 0 20px;
+				padding: 0 10px;
 				line-height: 40px;
 				border:1px solid #ccc;
 				box-sizing: border-box;

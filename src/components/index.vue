@@ -1,10 +1,10 @@
 <template>
 
 <div>
-	<h1>index</h1>
 	<navbar></navbar>
 	<search></search>
 	<indexNowplaying></indexNowplaying>
+	<div class="clear"></div>
 	<indexComingsoon></indexComingsoon>
 </div>
 
@@ -28,5 +28,7 @@ export default {
 </script>
 
 <style>
-
+.clear{
+	clear:both;
+}
 </style>
