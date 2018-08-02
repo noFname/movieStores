@@ -2,16 +2,18 @@
 
 <div>
 	<h1>looplist</h1>
-	<mt-swipe :auto="4000" class="swipe">
-	  <mt-swipe-item v-for="data in looplist" :key="data.movieId"><img :src="data.img" alt=""></mt-swipe-item>
-	</mt-swipe>
+	<div class="swiper-container" v-if="looplist.length>0">
+	  <div class="swiper-wrapper">
+	    <div class="swiper-slide" v-for="data in looplist" v-loops><img :src="data.img" alt=""></div>
+	  </div>
+	</div>
 </div>
 
 </template>
 
 <script>
 import axios from "axios"
-import { Swipe, SwipeItem } from 'mint-ui';
+// import { Swipe, SwipeItem } from 'mint-ui';
 
 export default {
 	data(){
@@ -19,10 +21,7 @@ export default {
 			looplist:[]
 		}
 	},
-	components :{
-		'mt-swipe': Swipe,
-		'mt-swipe-item' : SwipeItem
-	},
+	
 
 	mounted(){
 		console.log("qaaaaa")
@@ -30,19 +29,42 @@ export default {
 			console.log(res.data);
 			this.looplist = res.data.movies
 		})
-	}
+
+
+		
+	},
+
 
 }
-
 
 </script>
 
 <style scoped lang="scss">
-	.swipe{
-		width:50%;
-		height: 500px;
-		img{
-				width:100%;
-			}
-	}
+
+.swiper-container {
+  width: 100%;
+  background: #666;
+}
+.swiper-slide {
+	margin: 15px;
+
+  background: #fff;
+	/*width:400px;*/
+  /* Center slide text vertically */
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+  img{
+  	width:100%;
+  }
+}
 </style>
