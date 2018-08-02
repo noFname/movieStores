@@ -21,14 +21,7 @@ Vue.directive('loops', {
   },
 
 })
-// vue.directive('swipe',{
-// 	inserted(el){
-// 		new Swiper('.swiper-container',{
-// 			autoplay:2000,
-// 			loop:true
-// 		})
-// 	}
-// })
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
