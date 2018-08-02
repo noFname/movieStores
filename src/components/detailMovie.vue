@@ -1,6 +1,8 @@
 <template>
 <div>
-	<h1>detailMovie</h1>
+	<header>
+		ssss
+	</header>
 	<userComment></userComment>
 </div>
 
@@ -9,6 +11,7 @@
 <script>
 	import userComment from './common/userComment.vue'
 export default {
+
 	components : {
 		userComment
 	}
@@ -18,5 +21,9 @@ export default {
 </script>
 
 <style>
-
+	header{
+		height:52px;
+		width:100%;
+		background: red;
+	}
 </style>
