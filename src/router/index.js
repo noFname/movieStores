@@ -56,7 +56,7 @@ export default new Router({
       component: search
     },
     {
-      path: '/detailMovie',
+      path: '/detailMovie/:id',
       component: detailMovie
     },
     {
