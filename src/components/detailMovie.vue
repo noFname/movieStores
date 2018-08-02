@@ -1,10 +1,10 @@
 <template>
 <div class="BOX">
 	<div class="auto">
-		<header style="background:url(http://img5.mtime.cn/mt/2018/07/23/113049.24374498_1280X720X2.jpg) no-repeat top center;background-size: 100% auto;">
+		<!-- <header style="background:url(http://img5.mtime.cn/mt/2018/07/23/113049.24374498_1280X720X2.jpg) no-repeat top center;background-size: 100% auto;">
 			<div class="head">
 				<a href="" class="left">
-					<i class="iconfont icon-fanhui"></i>
+					<i class="iconfont icon-fanhui" @click="goIndex"></i>
 				</a>
 				<a href="" class="right">
 					<i class="iconfont icon-share"></i>
@@ -14,11 +14,14 @@
 				</a>
 			</div>
 			<p style="background:url(https://static1.mtime.cn/html5/20180727153608/images/2014/cinemainfo_bg.png) no-repeat bottom center;background-size: 200% auto"></p>
-		</header>
+		</header> -->
+		<movieHeader></movieHeader>
 		<section class="clear">
 			<!-- 影片基础信息 -->
 			<div class="film_info">
 				<div class="img">
+					<i class="iconfont icon-bofang"></i><span></span>
+					<img src="https://static1.mtime.cn/html5/20180727153608/images/2014/iv_cine_04.png" alt="" class="mix">
 					<img src="http://img5.mtime.cn/mt/2018/07/23/113049.24374498_1280X720X2.jpg" alt="">
 				</div>
 				<div class="info">
@@ -26,6 +29,7 @@
 						<h2>西虹市首富</h2>
 						<span>Hello Mr. Billionaire</span>
 					</div>
+					<div class="pf">6.8</div>
 					<ul>
 						<li>
 							<span>有彩蛋</span>
@@ -175,7 +179,7 @@
 			</div>
 		</section>
 		<userComment></userComment>
-		<section class="footer">
+		<!-- <section class="footer">
 			<div class="one">
 				<ul>
 					<li>首页</li>
@@ -202,7 +206,8 @@
 					<span> Mtime.com Inc. All rights reserved.</span>
 				</p>
 			</div>
-		</section>
+		</section> -->
+		<movieFooter></movieFooter>
 	</div>
 	<footer>
 		<input type="text" placeholder="留下我想说的...">
@@ -214,6 +219,8 @@
 
 <script>
 	import userComment from './common/userComment.vue'
+	import movieHeader from './common/movieHeader.vue'
+	import movieFooter from './common/movieFooter.vue'
 	import axios from 'axios'
 	export default {
 		data(){
@@ -230,6 +237,9 @@
 				datalist:[]
 			}
 		},
+		methods:{
+			
+		},
 		
 		mounted(){
 			axios.get('Service/callback.mi/movie/Image.api?movieId=253688&t=20188216272271861').then(res=>{
@@ -237,13 +247,10 @@
 				this.datalist=res.data
 			})
 		},
-		methods:{
-			// list(index){
-			// 	this.datalist=res.data[index].image
-			// }
-		},
 		components : {
-			userComment
+			userComment,
+			movieHeader,
+			movieFooter
 		}
 	}
 
@@ -270,7 +277,7 @@
 	.right{
 		float:right;
 	}
-	header{
+	/*header{
 		height:168px;
 		width:100%;
 		position: relative;
@@ -279,6 +286,7 @@
 			height:52px;
 			width:100%;
 			position: absolute;
+			z-index: 99;
 			top:0;
 			a{
 				display: block;
@@ -311,7 +319,7 @@
 		top: 0;
 		right: 0;
 		bottom: 0;
-	}
+	}*/
 	section{
 		overflow: hidden;
 		.show{
@@ -343,10 +351,37 @@
 				overflow: hidden;
 				border:2px solid #fff;
 				margin-right:12px;
-				float:left;
 				display: flex;
 				justify-content: center;
 				align-items: center;
+				position: relative;
+				
+				i{
+					height:50px;
+					width:50px;
+					color:#fff;
+					position: absolute;
+					font-size:50px;	
+					z-index: 1;
+					display: inline-block;
+				}
+				span{
+					position: absolute;
+					display: inline-block;
+					height:44px;
+					margin-top:3px;
+					background: rgba(0,0,0,.2);
+					border-radius: 50%;
+					width:44px;
+				}
+				.mix{
+					position: absolute;
+					top:10px;
+					right:10px;
+					width:38px;
+					height:auto;
+				}
+				
 				img{
 					height:192px;
 				}
@@ -361,6 +396,15 @@
 					padding:6px 18px 19px 0;
 					color:#fff;
 				}	
+				.pf{
+					position: absolute;
+					right:20px;
+					top:50px;
+					background:#659d0e;
+					color:#fff;
+					line-height: 20px;
+					padding:5px;
+				}
 				ul{
 					li{
 						font-weight: bold;
@@ -609,7 +653,7 @@
 			line-height: 54px;
 		}
 	}
-	.footer{
+	/*.footer{
 		.one{
 			background: #fff;
 			line-height: 50px;
@@ -659,5 +703,5 @@
 			}
 		}
 		
-	}
+	}*/
 </style>
