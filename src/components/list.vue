@@ -21,6 +21,7 @@
 
 <script>
 	import navbar from './common/navbar.vue'
+	import router from '../router'
 	import axios from 'axios'
 export default {
 	data(){
@@ -34,6 +35,7 @@ export default {
 	methods : {
 		detail(id){
 			console.log(id);
+			router.push('/detail/'+id)
 		}
 	},
 	mounted(){
