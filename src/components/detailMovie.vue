@@ -1,5 +1,5 @@
 <template>
-<div class="BOX">
+<div class="BOX" v-if="headlist">
 	<div class="auto">
 		<!-- <header style="background:url(http://img5.mtime.cn/mt/2018/07/23/113049.24374498_1280X720X2.jpg) no-repeat top center;background-size: 100% auto;">
 			<div class="head">
@@ -22,21 +22,23 @@
 				<div class="img">
 					<i class="iconfont icon-bofang"></i><span></span>
 					<img src="https://static1.mtime.cn/html5/20180727153608/images/2014/iv_cine_04.png" alt="" class="mix">
-					<img src="http://img5.mtime.cn/mt/2018/07/23/113049.24374498_1280X720X2.jpg" alt="">
+					<img :src="headlist.image" alt="">
 				</div>
 				<div class="info">
 					<div class="title">
-						<h2>西虹市首富</h2>
-						<span>Hello Mr. Billionaire</span>
+						<h2>{{headlist.titleCn}}</h2>
+						<span>{{headlist.titleEn}}</span>
 					</div>
-					<div class="pf">6.8</div>
+					<div class="pf">{{headlist.rating}}</div>
 					<ul>
 						<li>
 							<span>有彩蛋</span>
-							 - 118分钟
+							 - {{headlist.runTime}}
 						</li>
-						<li>喜剧</li>
-						<li>2018年7月27日中国上映 </li>
+						<li>
+							<span  v-for="type,index in headlist.type" class="span" v-if="index<3">{{type}}<em> / &nbsp;</em></span>
+						</li>
+						<li>{{headlist.release.date}}{{headlist.release.location}}上映 </li>
 					</ul>
 					<aside>
 						<a href="">我想看</a>
@@ -48,8 +50,8 @@
 			<div class="btnBox">
 				<div>
 					<p>
-						<i class="iconfont icon-shangyinhao"></i>
-						<b>沈腾宋芸桦感受大手大脚花钱</b>
+						<i class="iconfont icon-shangyinhao" v-show="headlist.commonSpecial"></i>
+						<b>{{headlist.commonSpecial}}</b>
 					</p>
 					<a href="">
 						<span>查影讯/购票</span>
@@ -65,7 +67,7 @@
 			<!-- 影片介绍 -->
 			<article class="introduce">
 				<p :style="isShow?height1:height2">
-					影片改编自1902年乔治·巴尔·麦卡奇翁撰写的小说《布鲁斯特的百万横财》，中国版故事发生在《夏洛特烦恼》中的“特烦恼”之城“西虹市”。混迹于丙级业余足球队的守门员王多鱼（沈腾饰演），因比赛失利被开除离队。正处于人生最低谷的他接受了神秘台湾财团“一个月花光十亿资金”的挑战。本以为快乐生活就此开始，王多鱼却第一次感到“花钱特烦恼”！想要人生反转走上巅峰，真的没有那么简单。
+					{{headlist.content}}
 				</p>
 				<i :class="isShow?classa1:classa2" @click="isShow=!isShow"></i>
 			</article>
@@ -81,7 +83,7 @@
 			<!-- 演员表 -->
 			<article class="performer">
 				<h2>
-					<span>15位演职员</span>
+					<span>{{headlist.personCount}}位演职员</span>
 					<i class="iconfont icon-jiantou1 right"></i>
 				</h2>
 				<div class="flexbox">
@@ -89,9 +91,9 @@
 						<dl>
 							<dt>导演</dt>
 							<dd>
-								<img src="http://img31.mtime.cn/ph/2015/09/23/113918.99192686_1280X720X2.jpg" alt="">
-								<p>闫非</p>
-								<span>Fei Yan</span>
+								<img :src="headlist.director.directorImg" alt="">
+								<p class="ch">{{headlist.director.directorName}}</p>
+								<span>{{headlist.director.directorNameEn}}</span>
 							</dd>
 						</dl>
 					</div>
@@ -100,28 +102,17 @@
 							<dt>全部演员</dt>
 							<dd>
 								<ul>
-									<li>
+									<li v-for="actor in headlist.actorList">
 										<div>
-											<img src="http://img31.mtime.cn/ph/2014/09/26/105617.72460110_1280X720X2.jpg" alt="">
+											<img :src="actor.actorImg" alt="">
+											}
 										</div>
-										<p>沈腾</p>
-										<span>Teng Shen</span>
+										<p class="ch1">{{actor.actor}}</p>
+										<span>{{actor.actorEn}}</span>
 										<div>
-											<img src="http://img31.mtime.cn/ph/2014/09/26/105617.72460110_1280X720X2.jpg" alt="">
+											<img src="actor.roleImg" alt="">
 										</div>
-										<p>沈腾</p>
-									</li>
-									
-									<li>
-										<div>
-											<img src="http://img31.mtime.cn/ph/2015/11/18/155034.80099341_1280X720X2.jpg" alt="">
-										</div>
-										<p>宋芸桦</p>
-										<span>Teng Shen</span>
-										<div>
-											<img src="http://img31.mtime.cn/ph/2015/11/18/155034.80099341_1280X720X2.jpg" alt="">
-										</div>
-										<p>饰:夏竹</p>
+										<p>饰：{{actor.roleName}}</p>
 									</li>
 								</ul>
 							</dd>
@@ -137,12 +128,12 @@
 			<!-- 剧照 -->
 			<article class="pic">
 				<h2>
-					<span>70张照片</span>
+					<span>{{headlist.imageCount}}张照片</span>
 					<i class="iconfont icon-jiantou1 right"></i>
 				</h2>
 				<ul>
-					<li v-for="data,index in datalist">
-						<img :src="data.image" alt="" >
+					<li v-for="data,index in headlist.images">
+						<img :src="data" alt="" >
 					</li>
 				</ul>
 			</article>
@@ -152,20 +143,20 @@
 				<p></p>
 			</div>
 			<!-- 影评 -->
-			<article class="review">
+			<article class="review" v-if="reviewlist">
 				<h2>
-					<span>精选影评（48）</span>
+					<span>精选影评（{{reviewlist.totalCount}}）</span>
 					<i class="iconfont icon-jiantou1 right"></i>
 				</h2>
-				<h3>沈腾，这一次真的“多鱼（余）”了</h3>
-				<p>
-					作为开心麻花的重磅新片，沈腾自然是本片最大的亮点。以往，他一出场就自带喜剧笑果，你想不笑都难。一个动作、一个..
-				</p>
+				<h3>{{reviewlist.comments[0].title}}</h3>
+				<p class="p">{{reviewlist.comments[0].content}}</p>
 				<ul class="clear">
 					<li>
-						<div><img src="" alt=""></div>
-						<p>冷子墨</p>
-						<span>2018-07-29 07:47:00 看过 - 评分</span><em>5.0</em>
+						<div class="ll"><img :src="reviewlist.comments[0].headurl" alt=""></div>
+						<div class="rr">
+							<p>{{reviewlist.comments[0].nickname}}</p>
+							<span>2018-07-29 07:47:00</span>
+						</div>
 					</li>
 				</ul>
 			</article>
@@ -234,17 +225,24 @@
 				},
 				classa1:'iconfont icon-jiantou',
 				classa2:'iconfont icon-xiangshangjiantou',
-				datalist:[]
+				headlist:null,
+				reviewlist:null
+
 			}
 		},
-		methods:{
-			
-		},
-		
 		mounted(){
-			axios.get('Service/callback.mi/movie/Image.api?movieId=253688&t=20188216272271861').then(res=>{
-				console.log(res.data)
-				this.datalist=res.data
+			axios.get(`Service/callback.mi/movie/Detail.api?movieId=${this.$route.params.id}&locationId=290&t=2018838591516998`).then(res=>{
+				// console.log(res.data)
+				this.headlist=res.data
+				this.background = {
+					'background':'url('+this.headlist.image+')' ,
+					'backgroundSize':' 100% auto'}
+				// console.log(this.headlist)
+			})
+			axios.get(`Service/callback.mi/Movie/HotLongComments.api?movieId=${this.$route.params.id}&pageIndex=1&t=2018831524465233`).then(res=>{
+				// console.log(res.data)
+				this.reviewlist=res.data
+				console.log(this.reviewlist)
 			})
 		},
 		components : {
@@ -395,6 +393,19 @@
 					overflow: hidden;
 					padding:6px 18px 19px 0;
 					color:#fff;
+					h2{
+						font-size: 20px;
+					}
+					span{
+						display: block;
+						width:150px;
+						position: relative;
+						overflow: hidden;
+						font-size: 14px;
+						height:20px;
+						white-space:nowrap;
+						text-overflow: ellipsis;
+					}
 				}	
 				.pf{
 					position: absolute;
@@ -414,6 +425,16 @@
 						span{
 							color: #659d0e;
 					    	font-weight: normal
+						}
+						span.span{
+							font-weight: bold;
+							color:#3e3e3e;
+							display: inline-block;
+						}
+						span.span:last-of-type{
+							em{
+								display: none;
+							} 
 						}
 					}
 				}
@@ -517,6 +538,16 @@
 					dd{
 						text-align: center;
 						margin-top:5px;
+						img{
+							float:left;
+						}
+						.ch{
+							float:left;
+							line-height: 24px;
+							height:24px;
+							width:90px;
+							overflow: hidden;
+						}
 					}
 					img{
 						width:100%;
@@ -545,11 +576,21 @@
 								}
 							}
 							p{
-								font-size: 16px;
+								font-size: 12px;
 								line-height: 20px;
 							}
-							span{
+							p.ch1{
+								overflow: hidden;
+								width:100%;
 								font-size: 14px;
+								height:20px;
+								white-space:nowrap;
+								text-overflow: ellipsis;
+							}
+							span{
+								font-size: 12px;
+								height:36px;
+								display: block;
 								line-height: 18px;
 							}
 							
@@ -580,8 +621,12 @@
 				li{
 					width:23%;
 					overflow: hidden;
+					display: flex;
+					flex-wrap:wrap;
+					justify-content: center;
+					align-items: center;
 					img{
-						height:80px;
+						height: 80px
 					}
 				}
 			}
@@ -598,14 +643,16 @@
 					color:#ccc;
 				}
 			}
-			p{
+			.p{
 				margin-top:10px;
+				height: 65px;
+				overflow: hidden;
 			}
 			ul{
 				margin-top:10px;
 				li{
-					div{
-						float: left;
+					display: flex;
+					div.ll{
 						width:48px;
 						height:48px;
 						border-radius: 50%;
@@ -613,8 +660,12 @@
 						background: #ccc;
 						margin-right:10px;
 						img{
+							float:left;
 							width:100%;
 						}
+					}
+					.rr{
+						flex:1;
 					}
 					em{
 						background: #659d0e;

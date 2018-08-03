@@ -1,7 +1,8 @@
 <template>
 
 <div>
-	<header style="background:url(http://img5.mtime.cn/mt/2018/07/23/113049.24374498_1280X720X2.jpg) no-repeat top center;background-size: 100% auto;">
+	<header :style="background">
+		<!-- {'background':'url('+headlist.image+') no-repeat top center','backgroundSize' : ' 100% auto'} -->
 		<div class="head">
 			<a href="" class="left">
 				<i class="iconfont icon-fanhui" @click="goIndex"></i>
@@ -20,11 +21,32 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
+	data(){
+		return{
+			headlist:[],
+			background:{
+			}
+		}
+	},
 	methods:{
 		goIndex(){
 			location.href='/#/index/';
 		}
+	},
+
+	
+	mounted(){
+		console.log(this.$route.params.id)
+		axios.get(`Service/callback.mi/movie/Detail.api?movieId=${this.$route.params.id}&locationId=290&t=2018838591516998`).then(res=>{
+			// console.log(res.data)
+			this.headlist=res.data
+			this.background = {
+				'background':'url('+this.headlist.image+')' ,
+				'backgroundSize':' 100% auto'}
+			console.log(this.headlist)
+		})
 	}
 }
 
@@ -86,7 +108,7 @@ export default {
 	header::before{
 		content: '';
 		display: block;
-		background: rgba(0,0,0,0.2);
+		background: rgba(0,0,0,0.4);
 		position: absolute;
 		left: 0;
 		top: 0;

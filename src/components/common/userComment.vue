@@ -2,19 +2,21 @@
 
 <div>
 	<section>
-		<h1>网友短评(1835)</h1>
+		<h1>网友短评({{datalist.totalCommentCount}})</h1>
 		<ul class="clear">
-			<li class="clear">
+			<li class="clear" v-for="data in datalist.cts">
 				<div class="img">
-					<img src="" alt="">
+					<img :src="data.caimg" alt="">
 				</div>
 				<dl>
 					<dt>
-						<span>点你妈必</span>
-						<em>7.0</em>
-						<b>1小时前 - 评</b>
+						<span>{{data.ca}}</span>
+						<div>
+							<em>7.0</em>
+							<b>1小时前 - 评</b>
+						</div>
 					</dt>
-					<dd>没有什么内涵，但是胜在好看</dd>
+					<dd>{{data.ce}}</dd>
 					<dd>
 						<div><i class="iconfont icon-boshiweb_weizan"></i>赞</div>
 						<div><i class="iconfont icon-xinxi"></i>回复</div>
@@ -28,9 +30,22 @@
 </template>
 
 <script>
-export default {
-
-}
+	import axios from 'axios'
+	export default {
+		data(){
+			return{
+				datalist:[]
+				}
+		},
+		mounted(){
+			console.log(this.$route.params.id)
+			axios.get(`Service/callback.mi/Showtime/MovieComments.api?movieId=${this.$route.params.id}&pageIndex=1&t=2018839435633301`).then(res=>{
+				// console.log(res.data)
+				this.datalist=res.data
+				console.log(this.datalist)
+			})
+		}
+	}
 
 
 </script>
@@ -51,9 +66,9 @@ export default {
 		li{
 			margin-top:18px;
 			border-bottom:1px solid #d8d8d8;
+			display: flex;
 		}
 		div.img{
-			float: left;
 			width:48px;
 			height:48px;
 			border-radius: 50%;
@@ -65,42 +80,52 @@ export default {
 			}	
 		}
 		dl{
+			flex:1;
+			em{
+				font-style:normal;
+			}
 			dt{
 				line-height: 25px;
-				height:25px;
 				margin-bottom:6px;
-			}
-			span{
-				float:left;
-				color:#999;
-			}
-			b,em,div{
-				float: right
-			}
-			b{
-				font-weight:100;
-				color:#999;
-			}
-			em{
-				background: #659d0e;
-				color:#fff;
-				font-size: 12px;
-				display: inline-block;
-				padding:1px 2px;
-				line-height: 20px;
-				font-style:normal;
-				margin-left:6px;
-				margin-top:2px;
-			}
-			div{
-				height:54px;
-				line-height: 54px;
-				margin-left:10px;
-				color:#999;
-				i{
-					font-size:28px;
-					position: relative;
-					padding:0 5px;
+				display: flex;
+				span{
+					width:50%;
+				}
+				div{
+					flex:1;
+				}
+				b{
+					font-weight:100;
+					color:#999;
+				}
+				span{
+					color:#999;
+				}
+			}b,em,div{
+					float: right
+				}
+			dd{
+				
+				em{
+					background: #659d0e;
+					color:#fff;
+					font-size: 12px;
+					display: inline-block;
+					padding:1px 2px;
+					line-height: 20px;
+					margin-left:6px;
+					margin-top:2px;
+				}
+				div{
+					height:54px;
+					line-height: 54px;
+					margin-left:10px;
+					color:#999;
+					i{
+						font-size:28px;
+						position: relative;
+						padding:0 5px;
+					}
 				}
 			}
 		}
