@@ -31,7 +31,7 @@ export default {
 	components : {
 		navbar
 	},
-	meths : {
+	methods : {
 		detail(id){
 			console.log(id);
 		}
@@ -45,10 +45,10 @@ export default {
 	}
 }
 
-
 </script>
 
 <style scoped lang="scss">
+
 .clear::after{
 	content: "";
 	display: block;
