@@ -47,10 +47,10 @@ export default {
 	}
 }
 
-
 </script>
 
 <style scoped lang="scss">
+
 .clear::after{
 	content: "";
 	display: block;

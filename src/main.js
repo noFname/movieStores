@@ -21,7 +21,6 @@ Vue.directive('loops', {
   },
 
 })
-
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

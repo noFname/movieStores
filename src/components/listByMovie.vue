@@ -1,6 +1,10 @@
 <template>
 <div>
-	<h1>listByMovie</h1>
+	<ul>
+		<router-link tag="li" to="/index" class="iconfont "></router-link>
+		<router-link tag="li" to="/listByMovie/nowplaying">正在热映</router-link>
+		<router-link tag="li" to="/listByMovie/comingsoon">即将上映</router-link>
+	</ul>
 	<router-view></router-view>
 </div>
 
@@ -14,6 +18,13 @@ export default {
 
 </script>
 
-<style>
-
+<style scoped lang="scss">
+	ul{
+		width: 100%;
+		height: 50px;
+		line-height: 50px;
+		li{
+			float: left;
+		}
+	}
 </style>
