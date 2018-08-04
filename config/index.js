@@ -24,6 +24,11 @@ module.exports = {
             target : 'https://ticket-m.mtime.cn',
             host:'ticket-m.mtime.cn',
             changeOrigin : true
+        },
+        '/users':{
+          target : 'http://172.18.12.160:3000',
+          host:'172.18.12.160:3000',
+          changeOrigin : true
         }
     },
 

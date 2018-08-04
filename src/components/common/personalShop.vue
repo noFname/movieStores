@@ -7,7 +7,7 @@
 			<p>购物车</p>
 		</li>
 		<li>
-			<i class="iconfont icon-ticket"></i>
+			<router-link tag="i" to="/Order" class="iconfont icon-ticket"></router-link>
 			<p>电影票订单</p>
 		</li>
 		<li>
