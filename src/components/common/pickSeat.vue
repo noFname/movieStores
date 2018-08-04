@@ -1,9 +1,9 @@
 <template>
 
 <div>
-	<h1>pickseat</h1>
+
 	<div class="header">
-		<div class="back"> < </div>
+		<router-link tag="div" to="/detail/12345" class="back"> < </router-link>
 		<div class="hea">
 			<h3>西虹市首富</h3>
 			<p>2D中文</p>
@@ -12,13 +12,15 @@
 	</div>
 	
 	<div class="seat">
-		<h3>剩余n个座</h3>
+		<h3>剩余{{count}}个座</h3>
 		<ul>
-			<li v-for="data,index in seatlist" @click="handleClick(index)" :class="isShow?'pick':'' ">{{index}}</li>
+			<li v-for="data,index in seatlist" @click="handleClick(index)" :class="data.isShow?'pick':'' ">{{index}}</li>
 		</ul>
 	</div>
 
-	
+	<div class="price">
+		
+	</div>
 </div>
 
 </template>
@@ -28,9 +30,17 @@ export default {
 	data(){
 		return{
 			seatlist:[
-			{index,}
+			{isShow:false},
+			{isShow:false},
+			{isShow:false},
+			{isShow:false},
+			{isShow:false},
+			{isShow:false},
+			{isShow:false},
+			{isShow:false},
+			{isShow:false},
+			{isShow:false}
 			],
-			 isShow:false,
 			 currentIndex:0,
 			
 		}
@@ -40,7 +50,19 @@ export default {
 		handleClick(index){
 			console.log("aaaaaa")
 
-			this.isShow = !this.isShow
+			this.seatlist[index].isShow = !this.seatlist[index].isShow
+		}
+	},
+	computed :{
+		count(){
+			let num = this.seatlist.length;
+			let count = 0;
+			for(let i = 0; i < num ; i++){
+				if(!this.seatlist[i].isShow){
+					count++;
+				}
+			}
+			return	count;
 		}
 	}
 }
@@ -86,7 +108,7 @@ export default {
 			li{
 				width: 15px;
 				height: 15px;
-				background: blue;
+				background: #78c8f6;
 				margin: 5px 15px;
 			}
 		}

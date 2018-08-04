@@ -65,6 +65,7 @@ export default {
   width: 100%;
   background: #999;
   color: #fff;
+  padding: 25px 0;
 }
 .swiper-slide {
 
@@ -98,9 +99,14 @@ export default {
 	background: #fff;
 }
 .smalltitle{
+	width: 100%;
 	position: absolute;
 	bottom: -20px;
 	font-size: 14px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	text-align: center;
 }
 
 </style>
