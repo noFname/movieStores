@@ -1,20 +1,6 @@
 <template>
 <div class="BOX" v-if="headlist">
 	<div class="auto">
-		<!-- <header style="background:url(http://img5.mtime.cn/mt/2018/07/23/113049.24374498_1280X720X2.jpg) no-repeat top center;background-size: 100% auto;">
-			<div class="head">
-				<a href="" class="left">
-					<i class="iconfont icon-fanhui" @click="goIndex"></i>
-				</a>
-				<a href="" class="right">
-					<i class="iconfont icon-share"></i>
-				</a>
-				<a href="" class="right">
-					<i class="iconfont icon-shoucang"></i>
-				</a>
-			</div>
-			<p style="background:url(https://static1.mtime.cn/html5/20180727153608/images/2014/cinemainfo_bg.png) no-repeat bottom center;background-size: 200% auto"></p>
-		</header> -->
 		<movieHeader></movieHeader>
 		<section class="clear">
 			<!-- 影片基础信息 -->
@@ -53,9 +39,9 @@
 						<i class="iconfont icon-shangyinhao" v-show="headlist.commonSpecial"></i>
 						<b>{{headlist.commonSpecial}}</b>
 					</p>
-					<a href="">
-						<span>查影讯/购票</span>
-					</a>
+					<div>
+						<span @click="handleClick()">查影讯/购票</span>
+					</div>
 					
 				</div>
 			</div>
@@ -170,34 +156,6 @@
 			</div>
 		</section>
 		<userComment></userComment>
-		<!-- <section class="footer">
-			<div class="one">
-				<ul>
-					<li>首页</li>
-					<li>购票</li>
-					<li>发现</li>
-					<li>商城</li>
-					<li>我的</li>
-				</ul>
-			</div>
-			<div class="two">
-				<ul>
-					<li><a href="">PC版</a></li>
-					<li><a href="">客户端下载</a></li>
-					<li><a href="">意见反馈</a></li>
-					<li><a href="">帮助中心</a></li>
-				</ul>
-			</div>
-			<div class="three">
-				<a href="" style="background: url(https://static1.mtime.cn/html5/20180727153608/images/2014/fot_logo.png)no-repeat;background-size:100% auto;"></a>
-				<a href="" style="background: url(https://static1.mtime.cn/html5/20180727153608/images/h_mark.jpg)no-repeat;background-size:100% auto;"></a>
-				<p>
-					<span>Copyright </span>
-					<span>2006-2018</span>
-					<span> Mtime.com Inc. All rights reserved.</span>
-				</p>
-			</div>
-		</section> -->
 		<movieFooter></movieFooter>
 	</div>
 	<footer>
@@ -228,6 +186,11 @@
 				headlist:null,
 				reviewlist:null
 
+			}
+		},
+		methods:{
+			handleClick(){
+				console.log(this.$route.params.id)
 			}
 		},
 		mounted(){
@@ -275,49 +238,6 @@
 	.right{
 		float:right;
 	}
-	/*header{
-		height:168px;
-		width:100%;
-		position: relative;
-		background-size: 50% auto;
-		.head{
-			height:52px;
-			width:100%;
-			position: absolute;
-			z-index: 99;
-			top:0;
-			a{
-				display: block;
-				width:40px;
-				line-height: 52px;
-				text-align: center;
-				i{
-					font-size:20px;
-					color:#fff;
-					opacity: .7;
-
-				}
-				.icon-shoucang{
-					font-size: 24px
-				}
-			}
-		}
-		p{
-			height:100%;
-			width:100%;
-			position: absolute;
-		}
-	}
-	header::before{
-		content: '';
-		display: block;
-		background: rgba(0,0,0,0.2);
-		position: absolute;
-		left: 0;
-		top: 0;
-		right: 0;
-		bottom: 0;
-	}*/
 	section{
 		overflow: hidden;
 		.show{
@@ -484,9 +404,8 @@
 						margin-top:-2px;
 					}
 				}
-				a{
+				div{
 				    width:100%;
-				    display: block;
 				    height:48px;
 				    padding: 0 20px;
 					span{
@@ -704,55 +623,4 @@
 			line-height: 54px;
 		}
 	}
-	/*.footer{
-		.one{
-			background: #fff;
-			line-height: 50px;
-			ul{
-				display: flex;
-				li{
-					text-align: center;
-					color:#0074c5;
-					flex: 1;
-				}
-			}
-		}
-		.two{
-			height: 52px;
-			background: #f6f6f6;
-			ul{
-				text-align: center;
-				li{
-					display: inline-block;
-					
-					a{	
-						margin-top:18px;
-						padding:0 13px;
-						display: inline-block;
-						border-right:1px solid #ccc;
-					}
-				}
-				li:last-of-type{
-					a{border:0;}
-				}
-			}
-		}
-		.three{
-			text-align: center;
-			background: #f6f6f6;
-			p{
-				margin-bottom:10px;
-				span{
-					font-size: 12px;
-					color:#cdcdcd;
-				}
-			}	
-			a{
-				display: inline-block;
-				width:72px;
-				height:28px;
-			}
-		}
-		
-	}*/
 </style>

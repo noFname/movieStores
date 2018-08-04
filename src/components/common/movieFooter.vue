@@ -4,11 +4,11 @@
 	<section class="footer">
 		<div class="one">
 			<ul>
-				<li>首页</li>
-				<li>购票</li>
-				<li>发现</li>
-				<li>商城</li>
-				<li>我的</li>
+				<router-link tag="li" to="/index">首页</router-link>
+				<router-link tag="li" to="/list">购票</router-link>
+				<router-link tag="li" to="/index">发现</router-link>
+				<router-link tag="li" to="/index">商城</router-link>
+				<router-link tag="li" to="/personal">我的</router-link>
 			</ul>
 		</div>
 		<div class="two">

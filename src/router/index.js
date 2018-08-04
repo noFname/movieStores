@@ -11,6 +11,8 @@ import search from '../components/search.vue'
 import detailMovie from '../components/detailMovie.vue'
 import login from '../components/login.vue'
 import reg from '../components/reg.vue'
+import personal from '../components/personal.vue'
+import Order from '../components/Order.vue'
 
 Vue.use(Router)
 
@@ -66,6 +68,14 @@ export default new Router({
     {
       path: '/reg',
       component: reg
+    },
+    {
+      path: '/personal',
+      component: personal
+    },
+    {
+      path: '/Order',
+      component: Order
     },
     {
     	path:'*',

@@ -5,7 +5,7 @@
 		<!-- {'background':'url('+headlist.image+') no-repeat top center','backgroundSize' : ' 100% auto'} -->
 		<div class="head">
 			<a href="" class="left">
-				<i class="iconfont icon-fanhui" @click="goIndex"></i>
+				<router-link tag="i" to="/index" class="iconfont icon-fanhui"></router-link>
 			</a>
 			<a href="" class="right">
 				<i class="iconfont icon-share"></i>
@@ -22,6 +22,7 @@
 
 <script>
 import axios from 'axios'
+import router from '../../router'
 export default {
 	data(){
 		return{
@@ -32,7 +33,7 @@ export default {
 	},
 	methods:{
 		goIndex(){
-			location.href='/#/index/';
+			router.push('#/list')
 		}
 	},
 
