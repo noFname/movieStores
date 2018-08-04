@@ -1,7 +1,7 @@
 <template>
 
 <div>	
-	<h1>buyticket</h1>
+
 	<pickseat></pickseat>
 	<buybutton></buybutton>
 </div>
