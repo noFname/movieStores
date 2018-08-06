@@ -17,22 +17,22 @@
 			<i class="iconfont icon-location"></i>
 		</li>
 	</ul>
-	<looplist></looplist>
+	<looplist @list="getList"></looplist>
 	<ul class="showtime">
-		<li v-for="data,index in list" @click="handleClick(index)" :class="currentIndex == index ? 'focus' :''">{{data}}</li>
+		<li v-for="data,index in timeList" @click="handleClick(index)" :class="currentIndex == index ? 'focus' :''">{{data}}</li>
 	</ul>
-	<ul><!--  v-for="data,index in loop" -->
+	<ul  v-for="data,index in loop">
 		<li class="detailtime">
 			<div>
 				<h3>10:20</h3>
 				<p>12:18散场</p>
 			</div>
 			<div>
-				<p>2D/中文</p>
-				<p>3号厅</p>
+				<p>{{data.versionDesc}}/{{data.language}}</p>
+				<p>{{data.hall}}</p>
 			</div>
 			<div>
-				<p class="orange">￥45</p>
+				<p class="orange">￥{{data.price}}</p>
 				<p class="through">￥70</p>
 			</div>
 			<router-link to="/buyTicket" tag="div" class="last">购票</router-link>
@@ -53,27 +53,37 @@
 			return{
 				currentIndex:0,
 				isshow:false,
-				list:['后天（08月04日）','后天（08月04日）'],
+				movieList:[],
+				timeList:[],
 				cinema:{},
-				loop:{}
+				loop:null
 			}
 		},
 		methods:{
 			handleClick(index){
 				this.currentIndex = index
+			},
+			getList(data){
+				console.log(data);
+				axios.get(`/Service/callback.mi/showtime/ShowTimesByCinemaMovieDate.api?cinemaId=8878&movieId=${data.movieId}&date=2018-08-04`).then(res=>{
+					// console.log(res.data.s);
+					this.loop=res.data.s
+
+
+				})
+				console.log(this.movieList);
+				this.timeList = this.movieList[data.index].showDates
 			}
 
 		},
 		mounted(){
-			//https://m.mtime.cn/Service/callback.mi/Showtime/ShowtimeMovieAndDateListByCinema.api?cinemaId=3194&t=20188314522714257
-			axios.get(`/Service/callback.mi/Showtime/ShowtimeMovieAndDateListByCinema.api?cinemaId=${this.$route.params.cinemaid}&t=20188314522714257`).then(res=>{
+			
+			axios.get(`/Service/callback.mi/Showtime/ShowtimeMovieAndDateListByCinema.api?cinemaId=${this.$route.params.cinemaid}`).then(res=>{
 				// console.log(res.data)
 				this.cinema = res.data.cinema
+				this.movieList = res.data.movies
 			})
-			// axios.get(`/Service/callback-ticket.mi/cinema/showtime.api?cinemaId=8476&t=20188315521656643`).then(res=>{
-			// 	console.log(res.data)
-			// 	this.loop = res.data.data.showtimes.list
-			// })
+			
 		}
 	}
 

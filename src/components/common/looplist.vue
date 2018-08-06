@@ -5,7 +5,8 @@
 	<div class="swiper-container" v-if="looplist.length>0">
 	  <div class="swiper-wrapper">
 	    <div class="swiper-slide" v-for="data,index in looplist" v-loops>
-	    	<img :src="data.img" alt=""  @click="handleClick(index)">
+	    	<!-- {{index===0?defaultList(data.movieId,index):''}} -->
+	    	<img :src="data.img" alt=""  @click="handleClick(index,data.movieId)">
 	    	<p class="smalltitle">{{data.title}}</p>
 	    </div>
 	  </div>
@@ -31,7 +32,7 @@ export default {
 			looplist:[],
 			name:"西虹市首富",
 			time:"118分钟",
-			type:"喜剧",
+			type:"喜剧"
 
 		}
 	},
@@ -39,7 +40,7 @@ export default {
 	mounted(){
 		// console.log("qaaaaa")
 		axios.get('/Service/callback.mi/Showtime/ShowtimeMovieAndDateListByCinema.api?cinemaId=8878&t=20188116581065660').then(res=>{
-			console.log(res.data);
+			// console.log(res.data);
 			this.looplist = res.data.movies
 			// console.log(this.looplist[0].title)
 		})
@@ -47,12 +48,19 @@ export default {
 
 	methods:{
 
-		handleClick(index){
-			console.log("ccccccc"+this.looplist[index].title)
+		handleClick(index,movieId){
+			// console.log("ccccccc"+this.looplist[index].title)
 			this.name = this.looplist[index].title
 			this.time = this.looplist[index].length
 			this.type = this.looplist[index].type
+			// console.log(this.name);
+			
 
+			this.$emit("list" , {movieId,index})
+
+		},
+		defaultList(movieId,index){
+			this.$emit("list" , {movieId,index})
 		}
 	}
 }

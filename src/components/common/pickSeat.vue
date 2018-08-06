@@ -26,6 +26,7 @@
 </template>
 
 <script>
+	import bus from './bus.js'
 export default {
 	data(){
 		return{
@@ -39,18 +40,30 @@ export default {
 			{isShow:false},
 			{isShow:false},
 			{isShow:false},
+			{isShow:false},			
+			{isShow:false},
+			{isShow:false},
+			{isShow:false},
+			{isShow:false},
+			{isShow:false},
+			{isShow:false},
+			{isShow:false},
+			{isShow:false},
+			{isShow:false},
 			{isShow:false}
 			],
 			 currentIndex:0,
-			
+			counts:0
 		}
 	},
 
 	methods:{
 		handleClick(index){
-			console.log("aaaaaa")
 
 			this.seatlist[index].isShow = !this.seatlist[index].isShow
+			let num = this.seatlist.length - this.count
+			console.log(num);
+			bus.$emit('allprice',num)
 		}
 	},
 	computed :{
@@ -60,11 +73,16 @@ export default {
 			for(let i = 0; i < num ; i++){
 				if(!this.seatlist[i].isShow){
 					count++;
+					console.log(count);
+
 				}
 			}
+			this.counts=count;
+
 			return	count;
 		}
 	}
+	// https://m.mtime.cn/#!/theater/290/8382/date/20180804/
 }
 
 
@@ -102,7 +120,7 @@ export default {
 			width: 80%;			
 			display: flex;
 			justify-content: space-between;
-			background: pink;
+			background: #ddd;
 			flex-wrap: wrap;
 			margin-left: 10%;
 			li{
@@ -110,6 +128,9 @@ export default {
 				height: 15px;
 				background: #78c8f6;
 				margin: 5px 15px;
+				font-size: 12px;
+				text-align: center;
+				border-radius: 3px;
 			}
 		}
 	}

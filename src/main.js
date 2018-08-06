@@ -21,6 +21,8 @@ Vue.directive('loops', {
   },
 
 })
+
+var bus = new Vue();
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
