@@ -167,6 +167,7 @@
 </template>
 
 <script>
+	import router from '../router'
 	import userComment from './common/userComment.vue'
 	import movieHeader from './common/movieHeader.vue'
 	import movieFooter from './common/movieFooter.vue'
@@ -191,6 +192,7 @@
 		methods:{
 			handleClick(){
 				console.log(this.$route.params.id)
+				router.push('/buyTicket')
 			}
 		},
 		mounted(){
