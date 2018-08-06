@@ -5,7 +5,7 @@
 	<div class="header">
 		<router-link tag="div" to="/detail/12345" class="back"> < </router-link>
 		<div class="hea">
-			<h3>西虹市首富</h3>
+			<h3>选座</h3>
 			<p>2D中文</p>
 		</div>
 		<div class="null"></div>

@@ -65,23 +65,24 @@
 			},
 			getList(data){
 				console.log(data);
-				axios.get(`/Service/callback.mi/showtime/ShowTimesByCinemaMovieDate.api?cinemaId=8878&movieId=${data.movieId}&date=2018-08-04`).then(res=>{
-					// console.log(res.data.s);
+				this.timeList = this.movieList[data.index].showDates
+				axios.get(`/Service/callback.mi/showtime/ShowTimesByCinemaMovieDate.api?cinemaId=8878&movieId=${data.movieId}&date=${this.timeList[0]}`).then(res=>{
+					console.log(res.data.s);
 					this.loop=res.data.s
 
 
 				})
-				console.log(this.movieList);
-				this.timeList = this.movieList[data.index].showDates
+				console.log(this.movieList,'asdfghjkl;');
+				
 			}
 
 		},
 		mounted(){
 			
 			axios.get(`/Service/callback.mi/Showtime/ShowtimeMovieAndDateListByCinema.api?cinemaId=${this.$route.params.cinemaid}`).then(res=>{
-				// console.log(res.data)
 				this.cinema = res.data.cinema
 				this.movieList = res.data.movies
+				console.log(this.movieList,'123456789')
 			})
 			
 		}
