@@ -43,7 +43,6 @@ export default {
 				this.code=res.data
 				console.log(this.code)
 				if(this.code.code===1){
-					window.localStorage.setItem('username',this.num);
 					location.href='/#/personal/';
 					return this.username
 				}else{
@@ -56,6 +55,17 @@ export default {
 	},
 	components :{
 		"mt-button" : Button
+	},
+	beforeCreate(){
+		var aa = document.cookie;
+		console.log(aa);
+		var arr = aa.split('=');
+		for(let i in arr){
+			if(arr[i]==='userInfo'){
+				location.href="/#/personal/"
+			}
+		}
+
 	}
 }
 
