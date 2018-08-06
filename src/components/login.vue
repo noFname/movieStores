@@ -5,11 +5,11 @@
 		<a href="#"><img src="/static/logo_mtime.png" alt=""></a>
 	</h1>
 	<div class="inner">
-		<i class="iconfont">&#xe637;</i><input type="text" placeholder="登陆邮箱/手机号码" class="text"><br>
-		<i class="iconfont">&#xe64e;</i><input type="text" placeholder="密码">
+		<i class="iconfont">&#xe637;</i><input type="text" v-model="num" placeholder="登陆邮箱/手机号码" class="text"><br>
+		<i class="iconfont">&#xe64e;</i><input type="password" v-model="password" placeholder="密码">
 	</div>
 	
-	<mt-button type="primary" class="btn">登陆</mt-button><br>
+	<mt-button type="primary" class="btn" @click="loginClick()">登陆</mt-button><br>
 	<div class="other">
 		<a href="/#/reg" class="free">免费注册</a>
 		<a href="#" class="find">找回密码</a>
@@ -24,10 +24,34 @@
 
 <script>
 	import { Button } from 'mint-ui';
+	import axios from 'axios';
 export default {
+	data(){
+		return{
+			code:null,
+			num:'',
+			password : ''
+		}
+	},
 	methods : {
 		handleClick(){
 			location.href="/#/index"
+		},
+		loginClick(){
+			axios.post('/users/login',{username:this.num,password:this.password}).then(res=>{
+				console.log(res.data)
+				this.code=res.data
+				console.log(this.code)
+				if(this.code.code===1){
+					window.localStorage.setItem('username',this.num);
+					location.href='/#/personal/';
+					return this.username
+				}else{
+					alert('密码或账号不正确');
+					this.password=''
+				}
+
+			})
 		}
 	},
 	components :{

@@ -3,13 +3,13 @@
 <div>
 	<section class="footer">
 		<div class="one">
-			<ul>
-				<router-link tag="li" to="/index">首页</router-link>
-				<router-link tag="li" to="/list">购票</router-link>
-				<router-link tag="li" to="/index">发现</router-link>
-				<router-link tag="li" to="/index">商城</router-link>
-				<router-link tag="li" to="/personal">我的</router-link>
-			</ul>
+			<div class="ul">
+				<router-link tag="div" to="/index" class="li">首页</router-link>
+				<router-link tag="div" to="/list" class="li">购票</router-link>
+				<router-link tag="div" to="/index" class="li">发现</router-link>
+				<router-link tag="div" to="/index" class="li">商城</router-link>
+				<router-link tag="div" to="/personal" class="li">我的</router-link>
+			</div class="ul">
 		</div>
 		<div class="two">
 			<ul>
@@ -66,12 +66,14 @@ export default {
 			.one{
 				background: #fff;
 				line-height: 50px;
-				ul{
+				div.ul{
 					display: flex;
-					li{
+					div.li{
 						text-align: center;
 						color:#0074c5;
 						flex: 1;
+						height:50px;
+						line-height: 50px;
 					}
 				}
 			}

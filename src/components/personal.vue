@@ -11,7 +11,7 @@
 	<personalList></personalList>
 	<personalHelp></personalHelp>
 	<div class="SignOut">
-		<button>退出登录</button>
+		<div>退出登录</div>
 	</div>
 	<movieFooter></movieFooter>
 </div>
@@ -56,7 +56,7 @@ export default {
 }
 .SignOut{
 	padding:0 18px;
-	button{
+	div{
 		width:100%;
 		text-align: center;
 		line-height: 50px;
@@ -64,9 +64,11 @@ export default {
 		font-size: 20px;
 		color:#fff;
 		border:0;
+		outline: none;
 		background: #f13900;
-		margin-bottom:30px;
+		;
 		border-radius: 30px;
 	}
+	margin-bottom:40px
 }
 </style>

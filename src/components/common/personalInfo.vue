@@ -6,7 +6,7 @@
 			<img src="https://imgproxy.mtime.cn/get.ashx?uri=http%3A%2F%2Fimg2.mtime.cn%2Fimages%2Fdefault%2Fhead.gif&width=100&height=100&clipType=4" alt="">
 		</div>
 		<div class="r">
-			<div><i>MO</i><span>方0000000</span></div>
+			<div><i>MO</i><span>{{username}}</span></div>
 			<span>余额：￥0</span>
 		</div>
 	</article>
@@ -16,7 +16,14 @@
 
 <script>
 export default {
-
+	data(){
+		return{
+			username:''
+		}
+	},
+	mounted(){
+		this.username = window.localStorage.getItem('username');
+	}
 }
 
 

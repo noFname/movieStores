@@ -25,7 +25,7 @@
 <script>
 	import { Button } from 'mint-ui';
 	import { Checklist } from 'mint-ui';
-  	
+  	import axios from 'axios';
 export default {
 
 	data(){
@@ -43,7 +43,7 @@ export default {
 		userReg(){
 			var numRe = /^1[3456789]\d{9}$/;
 			var passwordRe = /^[\w.]{6,20}$/;
-			console.log(this.num +'=============' + this.password);
+			// console.log(this.num +'=============' + this.password);
 			if( this.num=== '' ){
 						alert('手机号不能为空~');
 						return false;
@@ -59,7 +59,18 @@ export default {
 				alert('密码格式不正确!!!!');
 				return false;
 			}
+			axios.post('/users/reg',{username:this.num,password:this.password})
+			.then(response=>{
+				 console.log(response.data);
+			})
+	  		.catch(function (error) {
+			    console.log(error);
+			});
 		}
+	},
+	mounted(){
+		
+		
 	},
 	components :{
 		"mt-button" : Button,
